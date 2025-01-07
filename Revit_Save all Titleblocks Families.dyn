@@ -1,0 +1,431 @@
+{
+  "Uuid": "3f50c209-c377-45ba-a483-cb4e68a1c37e",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Save all Titleblocks from Revit Project to a Folder",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "72cdcb48e99344ab92c74e89e4d486f8",
+      "Name": "Enter Folder path to Save .Rfa File",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "C:\\Users\\User\\Downloads\\ashikl",
+      "Description": "Creates a string",
+      "SelectedIndex": 0
+    }
+  ],
+  "Outputs": [
+    {
+      "Id": "3451ee7a01f84f99b2e4c7ec1aaecae5",
+      "Name": "Saved Families",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Get the parent family of this FamilyType\n\nFamilyType.Family: Family"
+    },
+    {
+      "Id": "9c6208d38e70401e83268e0b025623da",
+      "Name": "Saved families",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b4336b7cb99f4536bbb1f97b909d0711",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c9af8454a86043bf838694e7fe3ccc90",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4ba4271e687a43cda9672dcb656c5bf3",
+          "Name": "family",
+          "Description": "The Revit family to save\n\nFamily",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7f5aeaa6153c4a41b550cce76ed339c3",
+          "Name": "directoryPath",
+          "Description": "Directory to save the family to. If directory does not exist, it will be created.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d2a25d548c904115ac3f59de3f376654",
+          "Name": "string",
+          "Description": "File path of saved families",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.SaveFamilyToFolder@Revit.Elements.Family,string",
+      "Replication": "Auto",
+      "Description": "Saves all of the input families at a given location.\n\nDocument.SaveFamilyToFolder (family: Family, directoryPath: string): string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9e1b4294a67d470a9b75f9aa5b67ff98",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "309064ceb0644bd1aef33367e32845cb",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "72cdcb48e99344ab92c74e89e4d486f8",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bb862051db5d4a25b0fd82ff10a2a09c",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "C:\\Users\\User\\Downloads\\ashikl"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3451ee7a01f84f99b2e4c7ec1aaecae5",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "22ae2d80b1924baf8de991e9cf4a8b9c",
+          "Name": "familyType",
+          "Description": "Revit.Elements.FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c4c3ab580fc2458a8f0d8316c21c67e4",
+          "Name": "Family",
+          "Description": "Family",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FamilyType.Family",
+      "Replication": "Auto",
+      "Description": "Get the parent family of this FamilyType\n\nFamilyType.Family: Family"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "65f93a80-674c-4a98-9d0c-db3a138287e5",
+      "FunctionType": "Graph",
+      "Id": "742654422263446783f6f02ed94626ea",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "0b56aee58eee472fb04ad7f51bf29fbc",
+          "Name": "category",
+          "Description": " Works with categories, BuiltInCategories and BuiltInCategories as strings\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "55a4b8f6d2754141a2ea8d61cdaa95c7",
+          "Name": "toggle",
+          "Description": "bool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3fafc5ea521045c7b1cbdaf64d0d01c6",
+          "Name": "docOrRevitLinkInstance",
+          "Description": " Use only if you want to query a linked model\n\nvar\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c9f07bae39dd460f8a0be34898938b91",
+          "Name": "familyTypes",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Gets all family types/symbols of a given category in the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 679,
+      "SelectedString": "OST_TitleBlocks",
+      "Id": "8afd2db91df0449f8385571b3b9cd576",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "788995cc43074ac183d2c7b2d4001e85",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 200.0,
+      "WatchHeight": 200.0,
+      "Id": "9c6208d38e70401e83268e0b025623da",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "d4e3a997fbc947749226e02eaf621fac",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "74f13ca4c0294581a448b0e1b418a970",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "309064ceb0644bd1aef33367e32845cb",
+      "End": "c9af8454a86043bf838694e7fe3ccc90",
+      "Id": "1ab05dab47564d209cbf66d08971e20c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bb862051db5d4a25b0fd82ff10a2a09c",
+      "End": "7f5aeaa6153c4a41b550cce76ed339c3",
+      "Id": "057a0904a7b94722b61b818a904ba794",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c4c3ab580fc2458a8f0d8316c21c67e4",
+      "End": "4ba4271e687a43cda9672dcb656c5bf3",
+      "Id": "3f61be8f071e4f25831bcd7c3377de36",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c4c3ab580fc2458a8f0d8316c21c67e4",
+      "End": "d4e3a997fbc947749226e02eaf621fac",
+      "Id": "0eeadc721a6f414e8429dcf31c797dad",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c9f07bae39dd460f8a0be34898938b91",
+      "End": "22ae2d80b1924baf8de991e9cf4a8b9c",
+      "Id": "f51b5c7b6fdb47c7ade48ba27c22e41b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "788995cc43074ac183d2c7b2d4001e85",
+      "End": "0b56aee58eee472fb04ad7f51bf29fbc",
+      "Id": "bc051491ffd04d6fb9820c0271180c70",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [
+    "65f93a80-674c-4a98-9d0c-db3a138287e5"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Clockwork for Dynamo 2.x",
+      "Version": "2.3.0",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "742654422263446783f6f02ed94626ea"
+      ]
+    }
+  ],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.19",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.19.3.6394",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "b4336b7cb99f4536bbb1f97b909d0711",
+        "Name": "Document.SaveFamilyToFolder",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1652.4183995238482,
+        "Y": 261.53292641332757
+      },
+      {
+        "Id": "9e1b4294a67d470a9b75f9aa5b67ff98",
+        "Name": "Document.Current",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1268.0315834470748,
+        "Y": 253.59043091653587
+      },
+      {
+        "Id": "72cdcb48e99344ab92c74e89e4d486f8",
+        "Name": "Enter Folder path to Save .Rfa File",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1248.9274942976394,
+        "Y": 405.19816489650225
+      },
+      {
+        "Id": "3451ee7a01f84f99b2e4c7ec1aaecae5",
+        "Name": "Saved Families",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1247.9779884273753,
+        "Y": 646.34449061908663
+      },
+      {
+        "Id": "742654422263446783f6f02ed94626ea",
+        "Name": "All Family Types Of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 842.98376995067565,
+        "Y": 567.41779613516542
+      },
+      {
+        "Id": "8afd2db91df0449f8385571b3b9cd576",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 534.15660943362673,
+        "Y": 457.89688379650732
+      },
+      {
+        "Id": "9c6208d38e70401e83268e0b025623da",
+        "Name": "Saved families",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1756.6882086437188,
+        "Y": 802.12036428593512
+      }
+    ],
+    "Annotations": [],
+    "X": -317.48071088522335,
+    "Y": -19.517444295026564,
+    "Zoom": 0.45812793904142296
+  }
+}
