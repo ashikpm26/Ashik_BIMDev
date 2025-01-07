@@ -1,0 +1,259 @@
+{
+  "Uuid": "7fe6d02f-abb0-45fa-ada1-b89aa12e0cd3",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "DeleteCADFilesFromRevit",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      }
+    }
+  },
+  "Inputs": [
+    {
+      "Id": "b555362c426740bf93079628d16f20ed",
+      "Name": "Run the Script",
+      "Type": "boolean",
+      "Type2": "boolean",
+      "Value": "true",
+      "Description": "Enables selection between True and False",
+      "SelectedIndex": 0
+    }
+  ],
+  "Outputs": [
+    {
+      "Id": "7162f029c9fa4e719c7de5b7183772f9",
+      "Name": "Deleted CAD Elements",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "import clr\r\nclr.AddReference('RevitServices')\r\nfrom RevitServices.Persistence import DocumentManager\r\n\r\nclr.AddReference('RevitAPI')\r\nfrom Autodesk.Revit.DB import *\r\n\r\n# Get the current Revit document\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\n\r\n# Collect all ImportInstance elements (CAD files)\r\ncad_elements = FilteredElementCollector(doc).OfClass(ImportInstance).ToElements()\r\n\r\n# Output the collected elements\r\nOUT = cad_elements",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "9acf7d94de614fbeadb05a183f1b18c1",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "e0704cdf9a9744a684890fe1c9593da9",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4d35ba56b33b44aa8f67f55b2b6477a2",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8db61531f4a34a4b92bcd0b49fd9823f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e426961dd233400d8ea3ac5f3a403b2b",
+          "Name": "element",
+          "Description": "The element to delete.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8e41dbe3d819401fa0c019980f9356f4",
+          "Name": "int[]",
+          "Description": "The list of element id's deleted, including any dependent elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Delete@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "Delete the element and any elements that are totally dependent upon the element.\n\nElement.Delete (element: Element): int[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 95.2,
+      "WatchHeight": 38.4,
+      "Id": "7162f029c9fa4e719c7de5b7183772f9",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "abcb3ba5894d4eb380b577672c59ec2c",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "43d4d878a4824d9eb2bac9232ae8e7cf",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "b555362c426740bf93079628d16f20ed",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f02514a6870b42358e0ceac565364041",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4d35ba56b33b44aa8f67f55b2b6477a2",
+      "End": "e426961dd233400d8ea3ac5f3a403b2b",
+      "Id": "c778c1982814449ab2b94d605d40108d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8e41dbe3d819401fa0c019980f9356f4",
+      "End": "abcb3ba5894d4eb380b577672c59ec2c",
+      "Id": "86abd689013349859db86d625674c21e",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.19",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.1",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.19.3.6394",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -4.4769110679626465,
+      "EyeY": 4.8499870300292969,
+      "EyeZ": 21.638404846191406,
+      "LookX": 4.4769110679626465,
+      "LookY": -4.8499870300292969,
+      "LookZ": -21.638404846191406,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "9acf7d94de614fbeadb05a183f1b18c1",
+        "Name": "Python Script",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -171.61733015414939,
+        "Y": 1156.3480477830508
+      },
+      {
+        "Id": "8db61531f4a34a4b92bcd0b49fd9823f",
+        "Name": "Element.Delete",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 177.04262973507525,
+        "Y": 1156.3480477830508
+      },
+      {
+        "Id": "7162f029c9fa4e719c7de5b7183772f9",
+        "Name": "Deleted CAD Elements",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 553.823966691727,
+        "Y": 1156.3480477830508
+      },
+      {
+        "Id": "b555362c426740bf93079628d16f20ed",
+        "Name": "Run the Script",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -171.61733015414939,
+        "Y": 932.160975416794
+      }
+    ],
+    "Annotations": [],
+    "X": 250.4264642722452,
+    "Y": -578.19599508190026,
+    "Zoom": 0.74418407171972667
+  }
+}
